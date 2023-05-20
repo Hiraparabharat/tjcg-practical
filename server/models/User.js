@@ -12,10 +12,12 @@ const schema = new mongoose.Schema(
     versionKey: false,
     methods: {
       createJwt: function () {
-        return jwt.sign({ uur: this._id }, process.env.JWT_SECRET);
+        return jwt.sign({ uur: this._id }, process.env.JWT_SECRET, {
+          expiresIn: "2m",
+        });
       },
       comparePassword: function (password) {
-        return bcrypt.compare(this.password, password);
+        return bcrypt.compare(password, this.password);
       },
     },
   }
@@ -23,6 +25,7 @@ const schema = new mongoose.Schema(
 
 schema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
+  next();
 });
 
 module.exports = mongoose.model("users", schema);
