@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Api from "../api";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/reducer";
+import { Link as RouterLink } from "react-router-dom";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -82,6 +83,9 @@ const SignIn = () => {
             Log in
           </Button>
         </form>
+        <Link component={RouterLink} to="/sign-up">
+          Sign up
+        </Link>
       </Box>
     </Box>
   );

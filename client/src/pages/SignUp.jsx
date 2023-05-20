@@ -3,7 +3,8 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Api from "../api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -78,6 +79,9 @@ const SignUp = () => {
             Sign Up
           </Button>
         </form>
+        <Link component={RouterLink} to="/sign-in">
+          Sign in
+        </Link>
       </Box>
     </Box>
   );
